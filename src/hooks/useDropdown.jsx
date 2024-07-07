@@ -1,8 +1,20 @@
-import { useState } from "react";
-const useDropdown = () => {
-  const [selectedOption, setSelectedOption] = useState(null);
+import { useState, useRef } from "react";
+const useDropdown = ({
+  options = [],
+  withSearch = true,
+  multipleSelect = true,
+}) => {
+  const [selected, setSelected] = useState([]);
+  const [search, setSearch] = useState("");
+  const [isSearchShowed, setIsSearchShowed] = useState(false);
+  const divRef = useRef(null);
 
-  return selectedOption, setSelectedOption;
+  return {
+    selected,
+    search,
+    isSearchShowed,
+    divRef,
+  };
 };
 
 export default useDropdown;
