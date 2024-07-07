@@ -3,9 +3,9 @@ import Dropdown from "./components/Dropdown";
 
 function App() {
   return (
-    <>
+    <div className="m-4">
       <Dropdown options={dummy_options} />
-    </>
+    </div>
   );
 }
 
