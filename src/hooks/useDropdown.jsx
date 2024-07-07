@@ -9,11 +9,21 @@ const useDropdown = ({
   const [isSearchShowed, setIsSearchShowed] = useState(false);
   const divRef = useRef(null);
 
+  const handleSetOnFocus = () => {
+    setIsSearchShowed(true);
+    console.log("onFocus");
+  };
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value);
+  };
+
   return {
     selected,
     search,
     isSearchShowed,
     divRef,
+    handleSetOnFocus,
+    handleSearchChange,
   };
 };
 
