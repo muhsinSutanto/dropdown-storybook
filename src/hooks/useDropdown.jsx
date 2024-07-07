@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 const useDropdown = ({
   options = [],
   withSearch = true,
@@ -10,8 +10,7 @@ const useDropdown = ({
   const divRef = useRef(null);
 
   const handleSetOnFocus = () => {
-    setIsSearchShowed(true);
-    console.log("onFocus");
+    setIsSearchShowed(!isSearchShowed);
   };
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
@@ -38,6 +37,19 @@ const useDropdown = ({
       selected.filter((selectedOption) => selectedOption.value !== option.value)
     );
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (divRef.current && !divRef.current.contains(event.target)) {
+        setIsSearchShowed(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return {
     selected,

@@ -20,9 +20,11 @@ const Dropdown = ({
     handleRemoveSelected,
   } = useDropdown({
     options,
-    withSearch: true,
-    multipleSelect: true,
+    withSearch,
+    multipleSelect,
   });
+
+  console.log("data", dataOptions);
 
   return (
     <div ref={divRef} className="relative">

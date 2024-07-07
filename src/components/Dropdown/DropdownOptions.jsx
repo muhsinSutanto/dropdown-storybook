@@ -1,6 +1,7 @@
 import React from "react";
 
 import { SearchOutlined } from "@ant-design/icons";
+import HighlightedText from "./HighlightedText";
 
 const DropdownOptions = ({
   withSearch,
@@ -9,8 +10,6 @@ const DropdownOptions = ({
   options,
   handleClick,
 }) => {
-  console.log("test", search);
-
   return (
     <div className="shadow-2xl absolute bg-white w-full z-[1100]">
       {withSearch && (
@@ -31,7 +30,7 @@ const DropdownOptions = ({
             onClick={() => handleClick(item)}
             className="hover:bg-green-100 cursor-pointer"
           >
-            {item.label}
+            <HighlightedText text={item.label} highlight={search} />
           </div>
         ))}
       </div>
