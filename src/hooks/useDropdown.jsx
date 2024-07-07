@@ -17,6 +17,28 @@ const useDropdown = ({
     setSearch(e.target.value);
   };
 
+  const dataOptions = withSearch
+    ? options.filter((option) =>
+        option.label.toLowerCase().includes(search.toLowerCase())
+      )
+    : options;
+
+  const handleAddSelected = (option) => {
+    if (
+      selected.some((selectedOption) => selectedOption.value === option.value)
+    ) {
+      return;
+    }
+
+    setSelected(multipleSelect ? [...selected, option] : [option]);
+  };
+
+  const handleRemoveSelected = (option) => {
+    setSelected(
+      selected.filter((selectedOption) => selectedOption.value !== option.value)
+    );
+  };
+
   return {
     selected,
     search,
@@ -24,6 +46,9 @@ const useDropdown = ({
     divRef,
     handleSetOnFocus,
     handleSearchChange,
+    dataOptions,
+    handleAddSelected,
+    handleRemoveSelected,
   };
 };
 

@@ -2,7 +2,13 @@ import React from "react";
 
 import { SearchOutlined } from "@ant-design/icons";
 
-const DropdownOptions = ({ withSearch, search, handleSearchChange }) => {
+const DropdownOptions = ({
+  withSearch,
+  search,
+  handleSearchChange,
+  options,
+  handleClick,
+}) => {
   console.log("test", search);
 
   return (
@@ -17,6 +23,18 @@ const DropdownOptions = ({ withSearch, search, handleSearchChange }) => {
           />
         </div>
       )}
+
+      <div className="w-full gap-1 border-gray-300 border-solid border-[1px] p-1 max-h-[280px] overflow-y-auto">
+        {options.map((item, index) => (
+          <div
+            key={index}
+            onClick={() => handleClick(item)}
+            className="hover:bg-green-100 cursor-pointer"
+          >
+            {item.label}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
